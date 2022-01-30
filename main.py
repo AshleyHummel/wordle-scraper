@@ -10,6 +10,10 @@ from dotenv import load_dotenv
 import praw
 import pandas as pd
 
+# plotly
+import plotly.express as px
+import plotly.graph_objects as go
+
 load_dotenv(".env") # private environment variables are located in a local .env file
 
 # Read-only reddit instance
@@ -23,10 +27,29 @@ subreddit = reddit.subreddit("wordle")
 url = "https://www.reddit.com/r/wordle/comments/seu7nx/daily_wordle_224_saturday_29_january_2022/"
 submission = reddit.submission(url=url) # create submission instance from url of "Daily Wordle"
 
+postTitle = submission.title
+
+scoresList = [0,0,0,0,0,0]; # each index represents number of scores found for that score (1/6 - 6/6)
+
 # comment instance
 for top_level_comment in submission.comments:
-    indexOfScore = top_level_comment.body.find("/6") # look for "/6", which indicates a score
-    score = top_level_comment.body[indexOfScore-1:indexOfScore+2] # take substring of entire score ("#/6")
+  # look for "/6", which indicates a score
+  indexOfScore = top_level_comment.body.index("/6") if "/6" in top_level_comment.body else -1
+  
+  if indexOfScore != -1:
+    fullScore = top_level_comment.body[indexOfScore-1:indexOfScore+2]
+    score = int(fullScore[0]) # just the number part of the score
+    print(fullScore)
     print(score)
+    scoresList[score - 1] += 1
+    print(scoresList)
 
-# TODO - put scores in a list, find average... DISPLAY SOMETHING
+    
+    
+
+# pie chart
+labels = ['1', '2', '3', '4', '5', '6']
+values = [4500, 2500, 1053, 500] # TODO REPLACE VALUES
+
+fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+# fig.show()
