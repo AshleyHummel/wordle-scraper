@@ -14,7 +14,9 @@ Scrapes the subreddit r/wordle 's "Daily Wordle" posts for Redditors' Wordle sco
 - Pulls reddit application client ID/secret from local environment variables
 
 ## Content
-<img src="blank" width="50">
+<img src="console.png" width="700">
+<img src="barGraph.png" width="700">
+<img src="pieChart.png" width="700">
 
 ## License
 This project is open source and available under the MIT License.
