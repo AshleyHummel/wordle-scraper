@@ -11,6 +11,7 @@ Scrapes the subreddit r/wordle 's "Daily Wordle" posts for Redditors' Wordle sco
 - Console menu that is navigated by user
 - View calculated average and mode from Wordle scores parsed from user-inputted url
 - See pie chart and bar graph of data in a window
+- Pulls reddit application client ID/secret from local environment variables
 
 ## Content
 <img src="blank" width="50">
